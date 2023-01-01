@@ -1,26 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import { SearchInput } from "./Components/Form/SearchInput";
+import { ListLayout } from "./Components/Layout/ListLayout";
+import { SearchLayout } from "./Components/Layout/SearchLayout";
 
-function App() {
+export const App = () => {
+  const [newData, setNewData] = useState<any>();
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        maxWidth: "40rem",
+        width: "100%",
+        margin: "1rem auto",
+        border: "1px solid lightgray",
+        borderRadius: "0.5rem",
+        alignItems: "center",
+        padding: "1rem",
+      }}
+    >
+      <SearchLayout>
+        <SearchInput
+          onClick={(data) => {
+            setNewData([{ id: 0, name: data, username: data }]);
+          }}
+        />
+      </SearchLayout>
+      <ListLayout newData={newData} />
     </div>
   );
-}
-
-export default App;
+};
